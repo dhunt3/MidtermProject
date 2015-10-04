@@ -32,11 +32,11 @@ namespace MidtermProject
         {
             get
             {
-                return this.PhoneNum;
+                return this.phoneNum;
             }
             set
             {
-                this.PhoneNum = value;
+                this.phoneNum = value;
             }
         }
 
@@ -64,6 +64,34 @@ namespace MidtermProject
             }
         }
 
+        // Possible Customer Constructor. Created under Dorothy's branch:
+        public Customer(string custname, string phonenumber, string movie, DateTime checkoutDate)
+        {
+            this.CustName = custname;
+            this.PhoneNum = phonenumber;
+            this.MovieSelection = movie;
+            this.CheckOut = checkoutDate;
+        }
+
         // We will add our methods into our BRANCH copies of master.
+        public void CustInfo()
+        {
+            Console.WriteLine(CustName);
+            Console.WriteLine(PhoneNum);
+            Console.WriteLine("Movie checked out: " + MovieSelection);
+            Console.WriteLine(CheckOut);
+        }
+        public DateTime ReturnDate(DateTime checkoutDate)
+        {
+            DateTime returnDate = checkoutDate.AddDays(7);
+            return returnDate;
+        }
+
+        public int DaysLate(DateTime returnDate)
+        {
+            DateTime today = DateTime.Now;
+            TimeSpan amountOfDays = today.Subtract(returnDate);
+            return Convert.ToInt32(amountOfDays.TotalDays);
+        }
     }
 }
