@@ -32,7 +32,11 @@ namespace MidtermProject
         {
             get
             {
-                return this.phoneNum;
+                // Doro added this formatting option. This will help catch input that is not convertable to numbers.
+                    string number = String.Format("{0:(###)###-####}", ulong.Parse(phoneNum));
+                    return number;
+                    throw new Exception();  //String.Format("Invalid number")
+           
             }
             set
             {
@@ -74,20 +78,30 @@ namespace MidtermProject
         }
 
         // We will add our methods into our BRANCH copies of master.
-        public void CustInfo()
+        public void CustInfo()      // Shalamar's printing method. I added the try-catch blocks.
         {
             Console.WriteLine(CustName);
+            try
+            {                               // try method will print the phone number with format (###)###-#### 
+                                            // so long as the string of phoneNum are convertable numbers (to ulong).
             Console.WriteLine(PhoneNum);
-            Console.WriteLine("Movie checked out: " + MovieSelection);
-            Console.WriteLine(CheckOut);
+            }
+            catch (Exception pn)
+            {                               // Will print an error on the screen if the inputed phoneNum does not contain
+                                            // all convertable numbers. (ex: (216)526-asdf is incorrect. Cannot convert asdf to numbers
+                Console.WriteLine("Error: " + pn.Message);
+            }
+            Console.WriteLine(MovieSelection);
+            Console.WriteLine("Movie checked out: " + CheckOut);
         }
-        public DateTime ReturnDate(DateTime checkoutDate)
+        public DateTime ReturnDate(DateTime checkoutDate)       // method to figure out return date from checkout date
         {
             DateTime returnDate = checkoutDate.AddDays(7);
             return returnDate;
         }
 
-        public int DaysLate(DateTime returnDate)
+        public int DaysLate(DateTime returnDate)        // method to figure out how late the movie is (in relation to today
+                                                        // and it's return date.
         {
             DateTime today = DateTime.Now;
             TimeSpan amountOfDays = today.Subtract(returnDate);
