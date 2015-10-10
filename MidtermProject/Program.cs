@@ -22,14 +22,14 @@ namespace MidtermProject
                                                                         // DateTime object called returnDay
             int amountofDaysLate  = customer1.DaysLate(returnDay);      // Calls the DaysLate method from Customer class and 
                                                                         // returns the number of days late from return date to today.
-            customer1.CustInfo();       // prints customer info
+            //customer1.CustInfo();       // prints customer info
 
             string movieSelection = customer1.MovieSelection;
-
+            
             List<string> movies = new List<string>() {"Avengers", "Pitch Perfect 2", "Cinderella", "Kill Bill", "The Matrix", 
             "Big Hero 6", "SpongeBob", "Identity Theft", "Coraline", "Bridesmaids"};
 
-
+            Console.WriteLine("List of movies:");
             foreach (string item in movies)
             {
                 Console.WriteLine(item);
@@ -38,6 +38,7 @@ namespace MidtermProject
             // Doro added this to help with ignoring of case
             if (movies.Contains(movieSelection, StringComparer.CurrentCultureIgnoreCase))       //checks to see if CoraLiNe is in movies (ignoring case)
             {
+                customer1.CustInfo();   // print custInfo with movie info and date checked out.
                 // the selector is going to be the index where CoraLiNe is located in movies (ignoring case)
                 int selector = movies.FindIndex(index => index.Equals(movieSelection, StringComparison.CurrentCultureIgnoreCase));
                 // will grab the movie that matches the input and place it in the movieSelector string. This is so
@@ -50,7 +51,8 @@ namespace MidtermProject
 
             else
             {
-                Console.WriteLine("We don't have that movie!");     // If we don't have the movie
+                Console.WriteLine("We don't have that movie!" + "\n");     // If we don't have the movie
+                customer1.NoMovieRented();      // Prints the NoMovieRented method that only prints custname and phone# + a message
                 Console.WriteLine("\n");
             }
 
@@ -60,7 +62,7 @@ namespace MidtermProject
             }
 
 
-            Console.WriteLine("You are: " + amountofDaysLate + " day(s) late");
+            /*Console.WriteLine("You are: " + amountofDaysLate + " day(s) late");*/
             Console.ReadLine();
         }
     }

@@ -118,6 +118,13 @@ namespace MidtermProject
             Console.WriteLine(MovieSelection);
             Console.WriteLine("Movie checked out: " + CheckOut);
         }
+
+        public void NoMovieRented()
+        {
+            Console.WriteLine(CustName);
+            Console.WriteLine(PhoneNum);
+            Console.WriteLine("No movies checked out.");
+        }
         public DateTime ReturnDate(DateTime checkoutDate)       // method to figure out return date from checkout date
         {
             DateTime returnDate = checkoutDate.AddDays(7);
