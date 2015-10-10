@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,10 +33,33 @@ namespace MidtermProject
         {
             get
             {
+                Regex rgx = new Regex(@"(\(\d{3}\) \d{3}-\d{4})");
+                string newNum = rgx.Replace(phoneNum, "");
+                return newNum;
                 // Doro added this formatting option. This will help catch input that is not convertable to numbers.
-                    string number = String.Format("{0:(###)###-####}", ulong.Parse(phoneNum));
-                    return number;
-                    throw new Exception();  //String.Format("Invalid number")
+                /*string checkednum = "";
+                foreach(char item in phoneNum)
+                {
+                    if(Char.IsLetter(item) == true)
+                    {
+                        throw new Exception(string.Format("Invalid number"));
+                    }
+                    else
+                    {
+                        checkednum += item;
+                    }
+                }
+                string number = String.Format("{0:(###)###-####}", ulong.Parse(checkednum)); */
+                
+                /*ulong num = 0;      // this method will try parse the number. If it is true, it will print it. Else throw exception
+                bool parsed = UInt64.TryParse(phoneNum, out num);
+                if(parsed == true)
+                { 
+                string number = String.Format("{0:(###)###-####}", num);
+                return number;
+                }
+                else
+                 throw new Exception(string.Format("Invalid number")); */
            
             }
             set
@@ -78,7 +102,7 @@ namespace MidtermProject
         }
 
         // We will add our methods into our BRANCH copies of master.
-        public void CustInfo()      // Shalamar's printing method. I added the try-catch blocks.
+        public void CustInfo()      // Shalamar's printing method. Doro added the try-catch blocks.
         {
             Console.WriteLine(CustName);
             try
