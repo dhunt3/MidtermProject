@@ -1,0 +1,52 @@
+movieStoProgram
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace movieSto
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Customer nc = new Customer("Shalamar Brown", "3307855754", "kill Bill", new DateTime(2015, 10, 01));
+            nc.CustInfo();
+            string movieSelection = nc.MovieSelection;
+
+            List<string> movies = new List<string>() {"Avengers", "Pitch Perfect 2", "Cinderella", "Kill Bill", "The Matrix", 
+            "Big Hero 6", "SpongeBob", "Identity Theft", "Coraline", "Bridesmaides"};
+           
+
+                foreach (string item in movies)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine("\n");
+
+                if (movies.Contains(movieSelection))
+                {
+
+                    movies.Remove(movieSelection);
+                    Console.WriteLine("\n");
+
+                }
+
+                else
+                {
+                    Console.WriteLine("We don't have that movie!");
+                    Console.WriteLine("\n");
+                }
+
+                foreach (string item in movies)
+                {
+                    Console.WriteLine(item);
+                }
+
+          
+        }
+        
+    }
+}

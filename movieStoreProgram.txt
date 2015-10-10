@@ -1,0 +1,27 @@
+movieStore Program
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace movieStore
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Customer c1 = new Customer("Jane Doe", "000-000-0000", "You rented the movie It", new DateTime(2015, 10, 01)); 
+            LateFee LF = new LateFee(new DateTime(2015, 10, 01), DateTime.Today);
+            c1.CustInfo();
+            LF.PrintLate();
+            
+            //Customer c2 = new Customer("John Doe", "111-111-1111", "You currently have no movies out! What would You like today?", new DateTime(00,00,0000));
+            //LateFee LF2 = new LateFee(new DateTime(0000,00,00), DateTime.Today); //Exception Handler added here for missing argument or defult
+            //LF2.PrintLate();
+
+        }
+    }
+}

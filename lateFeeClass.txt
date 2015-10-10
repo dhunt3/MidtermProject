@@ -1,0 +1,54 @@
+lateFee Class
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Globalization;
+using System.IO;
+
+namespace movieStore
+{
+    class LateFee
+    {
+        
+            private DateTime lastCheckout;
+            private DateTime now;
+            
+          
+
+         public DateTime LastCheckout
+          {
+             get { return this.lastCheckout; }
+             set { this.lastCheckout = value; }
+          }
+         public DateTime Now
+         {
+             get { return this.now; }
+             set { this.now = value; }
+         }
+         public LateFee( DateTime lastCheckout, DateTime now )
+         {
+            this.LastCheckout = lastCheckout;
+            this.Now = DateTime.Today;
+         }
+
+        
+        
+
+         public void PrintLate()
+         {
+             string dateLC = LastCheckout.ToString("yyyyMMdd");
+             string dateNow = DateTime.Now.ToString("yyyyMMdd");
+             string sub = dateLC.Substring(6, 2);
+             string sub2 = dateNow.Substring(6, 2);
+             int dateLC1 = Int32.Parse(sub);
+             int dateLC2 = Int32.Parse(sub2);
+             int daysLate = dateLC2 - dateLC1;
+             double lateFee = daysLate * 1.50;
+             Console.WriteLine("You are " + daysLate + " days late!");
+             Console.WriteLine("Please pay " + "$" + lateFee + " before you rent another movie!");
+         }
+   }
+}

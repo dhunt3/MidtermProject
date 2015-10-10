@@ -1,0 +1,77 @@
+customerClass
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Globalization;
+
+namespace movieStore
+{
+
+
+
+    public class Customer
+    {
+        private string customerName;
+        private string customerPhone;
+        private string movieSelection;
+        private DateTime lastCheckout;
+        
+
+        public string CustomerName
+        {
+            get { return this.customerName; }
+            set { this.customerName = value; }
+        }
+        public string CustomerPhone
+        {
+            get { return this.customerPhone; }
+            set { this.customerPhone = value; }
+        }
+        public string MovieStatus
+        {
+            get { return this.movieSelection; }
+            set { this.movieSelection = value; }
+        }
+        public DateTime LastCheckout
+        {
+            get { return this.lastCheckout; }
+            set { this.lastCheckout = value; }
+        }
+
+        public Customer(string customerName, string customerPhone, string movieSelection, DateTime lastCheckout)
+        {
+            this.CustomerName = customerName;
+            this.CustomerPhone = customerPhone;
+            this.MovieStatus = movieSelection;
+            this.LastCheckout = lastCheckout;     
+        }
+
+
+        public void CustInfo(/*string customerName, string customerPhone, DateTime lastCheckout*/)
+        {
+            Console.WriteLine(CustomerName);
+            Console.WriteLine(CustomerPhone);
+            Console.WriteLine(MovieStatus);
+            Console.WriteLine(LastCheckout);
+
+        }
+        public void PrintLate()
+        {
+            string dateLC = LastCheckout.ToString("yyyyMMdd");
+            string dateNow = DateTime.Now.ToString("yyyyMMdd");
+            string sub = dateLC.Substring(6, 7);
+            string sub2 = dateNow.Substring(6, 7);
+            int dateLC1 = Int32.Parse("dd");
+            int dateLC2 = Int32.Parse("dd");
+            int daysLate = dateLC2 - dateLC1;
+            double lateFee = daysLate * 1.50;
+            Console.WriteLine("You are " + daysLate + " days late!");
+            Console.WriteLine("Please pay " + "$" + lateFee + " before you rent another movie!");
+        }
+    
+    }
+}

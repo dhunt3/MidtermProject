@@ -1,0 +1,61 @@
+movieStoCustomerClass
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace movieSto
+{
+   
+   
+        
+        public class Customer
+        {
+            private string customerName;
+            private string customerPhone;
+            private string movieSelection;
+            private DateTime lastCheckout;
+
+
+            public string CustomerName
+            {
+                get { return customerName; }
+                set { customerName = value; }
+            }
+            public string CustomerPhone
+            {
+                get { return customerPhone; }
+                set { customerPhone = value; }
+            }
+            public string MovieSelection
+            {
+                get { return movieSelection; }
+                set { movieSelection = value; }
+            }
+            public DateTime LastCheckout
+            {
+                get { return this.lastCheckout; }
+                set { this.lastCheckout = value; }
+            }
+
+            public Customer(string customerName, string customerPhone, string movieSelection, DateTime lastCheckout)
+            {
+                this.CustomerName = customerName;
+                this.CustomerPhone = customerPhone;
+                this.LastCheckout = lastCheckout;
+                this.MovieSelection = movieSelection;
+            }
+
+            public void CustInfo(/*string customerName, string customerPhone, DateTime lastCheckout*/)
+            {
+                Console.WriteLine(CustomerName); 
+                Console.WriteLine(CustomerPhone);
+                Console.WriteLine(MovieSelection);
+                Console.WriteLine(LastCheckout);
+                
+            }
+
+        }
+    }
