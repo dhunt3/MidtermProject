@@ -1,0 +1,61 @@
+newMovieStoreProgram
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace movieStore
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Customer c1 = new Customer("Jane Doe", "000-000-0000", "kill Bob", new DateTime(2015, 10, 01)); 
+            c1.CustInfo();
+            DateTime returnDay = c1.ReturnDate(c1.LastCheckout);
+            c1.PrintLate(returnDay);
+            Console.WriteLine("\n");
+            string movieSelection = c1.MovieSelection;
+            List<string> movies = new List<string>() {"Avengers", "Pitch Perfect 2", "Cinderella", "Kill Bill", "The Matrix", 
+            "Big Hero 6", "SpongeBob", "Identity Theft", "Coraline", "Bridesmaides"};
+
+            foreach (string item in movies)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("\n");
+
+            if (movies.Contains(movieSelection, StringComparer.CurrentCultureIgnoreCase))
+            {
+                int selector = movies.FindIndex(index => index.Equals(movieSelection, StringComparison.CurrentCultureIgnoreCase));
+                string movieSelector = movies[selector];
+                movies.Remove(movieSelector);
+                Console.WriteLine("\n");
+            }
+            else
+            {
+                Console.WriteLine("We do not have that movie selection");
+            }
+
+            foreach (string item in movies)
+            {
+                Console.WriteLine(item);
+            }
+
+            //Constructor must take or ignore checkout date Dot
+            //Create more customers
+            //Make Checkout
+            //Figure out StringBuilder
+
+
+            //Customer c2 = new Customer("John Doe", "111-111-1111", "You currently have no movies out! What would You like today?", new DateTime(2015, 10, 30));
+            //LateFee LF2 = new LateFee(c2.LastCheckout, DateTime.Today);
+            //c2.CustInfo();
+            //LF2.PrintLate();
+
+        }
+    }
+}
