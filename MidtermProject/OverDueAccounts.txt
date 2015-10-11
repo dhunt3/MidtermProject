@@ -1,0 +1,31 @@
+Doro Hunt
+(216)526-8656
+Coraline
+Movie checked out: 9/20/2015 12:00:00 AM
+Return date: 9/27/2015 12:00:00 AM
+You are 14 days late!
+Please pay $21 before you rent another movie!
+Shalamar Brown
+(330)542-6570
+Avengers
+Movie checked out: 10/3/2015 12:00:00 AM
+Return date: 10/10/2015 12:00:00 AM
+You are 1 days late!
+Please pay $1.5 before you rent another movie!
+Orlando Cruz
+(216)421-5714
+Kill Bill
+Movie checked out: 10/5/2015 12:00:00 AM
+Return date: 10/12/2015 12:00:00 AM
+Customer has no overdue information.
+Johnny Smith
+(440)651-7985
+No movies checked out.
+
+Jenny Cruz
+(216)741-9867
+Big Hero 6
+Movie checked out: 10/11/2015 9:15:59 AM
+Return date: 10/18/2015 9:15:59 AM
+Customer has no overdue information.
+

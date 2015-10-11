@@ -33,10 +33,10 @@ namespace MidtermProject
         {
             get
             {
-                Regex rgx = new Regex(@"(\(\d{3}\) \d{3}-\d{4})");
-                string newNum = rgx.Replace(phoneNum, "");
-                return newNum;
                 // Doro added this formatting option. This will help catch input that is not convertable to numbers.
+                 /*Regex rgx = new Regex(@"(\(\d{3}\) \d{3}-\d{4})");
+                string newNum = rgx.Replace(phoneNum, "");
+                return newNum;*/
                 /*string checkednum = "";
                 foreach(char item in phoneNum)
                 {
@@ -51,7 +51,7 @@ namespace MidtermProject
                 }
                 string number = String.Format("{0:(###)###-####}", ulong.Parse(checkednum)); */
                 
-                /*ulong num = 0;      // this method will try parse the number. If it is true, it will print it. Else throw exception
+                ulong num = 0;      // this method will try parse the number. If it is true, it will print it. Else throw exception
                 bool parsed = UInt64.TryParse(phoneNum, out num);
                 if(parsed == true)
                 { 
@@ -59,7 +59,7 @@ namespace MidtermProject
                 return number;
                 }
                 else
-                 throw new Exception(string.Format("Invalid number")); */
+                 throw new Exception(string.Format("Invalid number")); 
            
             }
             set
@@ -102,28 +102,45 @@ namespace MidtermProject
         }
 
         // We will add our methods into our BRANCH copies of master.
-        public void CustInfo()      // Shalamar's printing method. Doro added the try-catch blocks.
+        public void CustInfo(StringBuilder builder)      // Shalamar's printing method. Doro added the try-catch blocks.
         {
-            Console.WriteLine(CustName);
+            builder.Append(CustName);
+            builder.AppendLine();
             try
             {                               // try method will print the phone number with format (###)###-#### 
                                             // so long as the string of phoneNum are convertable numbers (to ulong).
-            Console.WriteLine(PhoneNum);
+                builder.Append(PhoneNum);
             }
             catch (Exception pn)
             {                               // Will print an error on the screen if the inputed phoneNum does not contain
                                             // all convertable numbers. (ex: (216)526-asdf is incorrect. Cannot convert asdf to numbers
-                Console.WriteLine("Error: " + pn.Message);
+                builder.Append("Error: " + pn.Message);
             }
-            Console.WriteLine(MovieSelection);
-            Console.WriteLine("Movie checked out: " + CheckOut);
+            builder.AppendLine();
+            builder.Append(MovieSelection);
+            builder.AppendLine();
+            builder.Append("Movie checked out: " + CheckOut);
+            builder.AppendLine();
         }
 
-        public void NoMovieRented()
+        public void NoMovieRented(StringBuilder builder)
         {
-            Console.WriteLine(CustName);
-            Console.WriteLine(PhoneNum);
-            Console.WriteLine("No movies checked out.");
+            builder.Append(CustName);
+            builder.AppendLine();
+            builder.Append(PhoneNum);
+            builder.AppendLine();
+            builder.Append("No movies checked out.");
+            builder.AppendLine();
+        }
+
+        public void MovieSelectionMethod(List<string> movies, string movieSelection)
+        {
+            int selector = movies.FindIndex(index => index.Equals(movieSelection, StringComparison.CurrentCultureIgnoreCase));
+            // will grab the movie that matches the input and place it in the movieSelector string. This is so
+            // that the movie can be removed from the list based on how the movie is written in the list, not how it was inputed.
+            string movieSelector = movies[selector];
+            MovieSelection = movieSelector;
+            movies.Remove(movieSelector);
         }
         public DateTime ReturnDate(DateTime checkoutDate)       // method to figure out return date from checkout date
         {
@@ -137,6 +154,28 @@ namespace MidtermProject
             DateTime today = DateTime.Now;
             TimeSpan amountOfDays = today.Subtract(returnDate);
             return Convert.ToInt32(amountOfDays.TotalDays);
+        }
+
+        public void PrintLate(StringBuilder builder, DateTime returnDate)  // Shalamar's method
+        {
+            
+            int daysLate = DaysLate(returnDate);
+            double lateFee = daysLate * 1.50;
+            builder.Append("You are " + daysLate + " days late!");
+            builder.AppendLine();       // Using builder so we can write to file
+            builder.Append("Please pay " + "$" + lateFee + " before you rent another movie!");
+            builder.AppendLine();
+        }
+
+        public bool IsLate(DateTime checkedOut, DateTime returnDate)       // Doro's method
+        {
+            DateTime today = DateTime.Now;
+            if (today > returnDate)
+                return true;
+            else
+            {
+                return false;
+            }
         }
     }
 }
