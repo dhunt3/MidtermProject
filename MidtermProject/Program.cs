@@ -15,8 +15,8 @@ namespace MidtermProject
 
             //this is part of Dorothy's branch off the master copy:
             // practice customers (hard-coded)
-            Customer customer1 = new Customer("Doro Hunt", "2165268656", "CoraLiNe", new DateTime(2015, 09, 20));
-            Customer customer2 = new Customer("Shalamar Brown", "3305426570", "avengers", new DateTime(2015, 10, 3));
+            Customer customer1 = new Customer("Doro Hunt", "21652686561234", "CoraLiNe", new DateTime(2015, 09, 20));
+            Customer customer2 = new Customer("Shalamar Brown", "330542asdf", "avengers", new DateTime(2015, 10, 3));
             Customer customer3 = new Customer("Orlando Cruz", "2164215714", "Kill bill", new DateTime(2015, 10, 5));
             Customer customer4 = new Customer("Johnny Smith", "4406517985", "Halloweentown", new DateTime(2015, 09, 10));
             
@@ -67,19 +67,24 @@ namespace MidtermProject
                                                               // from customers in list so that I can call the ReturnDay method.
                     DateTime returnDay = obj.ReturnDate(checkOutDate);    // Will return the return date and place it in
                                                                           // DateTime object called returnDay
-                    obj.CustInfo(builder);  // will call a method that will add the current customer's info to builder
-                    builder.Append("Return date: " + customer1.ReturnDate(checkOutDate));
-                    builder.AppendLine();
+                    //obj.CustInfo(builder);  // will call a method that will add the current customer's info to builder
+                    //builder.Append("Return date: " + customer1.ReturnDate(checkOutDate));
+                    //builder.AppendLine();
 
                     if (obj.IsLate(checkOutDate, returnDay) == true)    // calls a method that will check if customer is late
                     {
+                        // this will help us print only the late accounts to the text file.
+                        obj.CustInfo(builder);
+                        builder.Append("Return date: " + customer1.ReturnDate(checkOutDate));
+                        builder.AppendLine();
                         obj.PrintLate(builder, returnDay);  // if customer is late, add to builder their overdue info (days late and how much they owe)
                     }
                     else
                     {
                         // if customer is not late do this else block
-                        builder.Append("Customer has no overdue information.");
-                        builder.AppendLine();
+                        //builder.Append("Customer has no overdue information.");
+                        //builder.AppendLine();
+                        Console.WriteLine("Customer has no overdue information" + "\n");
                     }
 
                 }
@@ -87,12 +92,13 @@ namespace MidtermProject
                 else
                 {   // if the movie is not in the movies list do this else block
                     Console.WriteLine("We don't have that movie!" + "\n");     // If we don't have the movie
-                    obj.NoMovieRented(builder);      // Prints the NoMovieRented method that only prints custname and phone# + a message
-                    builder.AppendLine();
+                    //obj.NoMovieRented(builder);      // Prints the NoMovieRented method that only prints custname and phone# + a message
+                    //builder.AppendLine();
                     Console.WriteLine("\n");
                 }
             }
 
+            Console.WriteLine("List of movies: ");
             foreach (string item in movies)
             {
                 Console.WriteLine(item);

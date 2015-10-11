@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,17 +35,36 @@ namespace MidtermProject
             get
             {
                 // Doro added this formatting option. This will help catch input that is not convertable to numbers.
-                ulong num = 0;      
-                // this method will try parse the number. If it is true, it will print it. Else throw exception
+                string num = "";
+                Regex rgx = new Regex(@"\(?\s?(\d{3})\s?-?\s?\)?\s?(\d{3})\s?-?\s?(\d{4})");
+                //Console.WriteLine(rgx.IsMatch(phoneNum));
+                int counter = 1;
+                MatchCollection matches = rgx.Matches(phoneNum);
+                if (rgx.IsMatch(phoneNum))
+                {
+                    foreach (Match match in matches)
+                    {
+                        foreach (Group grp in match.Groups)
+                        {
+                            num += match.Groups[counter];
+                            counter++;
+                        }
+
+                    }
+                    string number = String.Format("{0:(###) ###-####}", ulong.Parse(num));
+                    return number;
+                }
+                else
+                {
+                    throw new Exception(string.Format("Invalid number"));
+                }
+            // this method will try parse the number. If it is true, it will print it. Else throw exception
+                /*ulong num = 0;  
                 bool parsed = UInt64.TryParse(phoneNum, out num);
                 if(parsed == true)
                 { 
                 string number = String.Format("{0:(###)###-####}", num);
-                return number;
-                }
-                else
-                 throw new Exception(string.Format("Invalid number")); 
-           
+                return number;*/
             }
             set
             {
@@ -114,7 +134,16 @@ namespace MidtermProject
             builder.AppendLine();
             builder.Append(CustName);   // Using builder so we can write to file
             builder.AppendLine();
-            builder.Append(PhoneNum);
+            try
+            {                               // try method will print the phone number with format (###)###-#### 
+                // so long as the string of phoneNum are convertable numbers (to ulong).
+                builder.Append(PhoneNum);
+            }
+            catch (Exception pn)
+            {                               // Will print an error on the screen if the inputed phoneNum does not contain
+                // all convertable numbers. (ex: (216)526-asdf is incorrect. Cannot convert asdf to numbers
+                builder.Append("Error: " + pn.Message);
+            }
             builder.AppendLine();
             builder.Append("No movies checked out.");
             builder.AppendLine();
