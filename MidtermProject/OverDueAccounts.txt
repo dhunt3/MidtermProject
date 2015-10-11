@@ -1,0 +1,17 @@
+
+Doro Hunt
+(216) 526-8656
+Coraline
+Movie checked out: 9/20/2015 12:00:00 AM
+Return date: 9/27/2015 12:00:00 AM
+You are 15 days late!
+Please pay $22.5 before you rent another movie!
+
+Shalamar Brown
+Error: Invalid number
+Avengers
+Movie checked out: 10/3/2015 12:00:00 AM
+Return date: 10/10/2015 12:00:00 AM
+You are 2 days late!
+Please pay $3 before you rent another movie!
+
