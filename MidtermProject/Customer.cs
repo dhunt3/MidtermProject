@@ -34,24 +34,8 @@ namespace MidtermProject
             get
             {
                 // Doro added this formatting option. This will help catch input that is not convertable to numbers.
-                 /*Regex rgx = new Regex(@"(\(\d{3}\) \d{3}-\d{4})");
-                string newNum = rgx.Replace(phoneNum, "");
-                return newNum;*/
-                /*string checkednum = "";
-                foreach(char item in phoneNum)
-                {
-                    if(Char.IsLetter(item) == true)
-                    {
-                        throw new Exception(string.Format("Invalid number"));
-                    }
-                    else
-                    {
-                        checkednum += item;
-                    }
-                }
-                string number = String.Format("{0:(###)###-####}", ulong.Parse(checkednum)); */
-                
-                ulong num = 0;      // this method will try parse the number. If it is true, it will print it. Else throw exception
+                ulong num = 0;      
+                // this method will try parse the number. If it is true, it will print it. Else throw exception
                 bool parsed = UInt64.TryParse(phoneNum, out num);
                 if(parsed == true)
                 { 
@@ -92,7 +76,7 @@ namespace MidtermProject
             }
         }
 
-        // Possible Customer Constructor. Created under Dorothy's branch:
+        // Possible Customer Constructor.
         public Customer(string custname, string phonenumber, string movie, DateTime checkoutDate)
         {
             this.CustName = custname;
@@ -104,6 +88,8 @@ namespace MidtermProject
         // We will add our methods into our BRANCH copies of master.
         public void CustInfo(StringBuilder builder)      // Shalamar's printing method. Doro added the try-catch blocks.
         {
+            // Using builder so we can write to file
+            builder.AppendLine();
             builder.Append(CustName);
             builder.AppendLine();
             try
@@ -125,7 +111,8 @@ namespace MidtermProject
 
         public void NoMovieRented(StringBuilder builder)
         {
-            builder.Append(CustName);
+            builder.AppendLine();
+            builder.Append(CustName);   // Using builder so we can write to file
             builder.AppendLine();
             builder.Append(PhoneNum);
             builder.AppendLine();
@@ -139,7 +126,7 @@ namespace MidtermProject
             // will grab the movie that matches the input and place it in the movieSelector string. This is so
             // that the movie can be removed from the list based on how the movie is written in the list, not how it was inputed.
             string movieSelector = movies[selector];
-            MovieSelection = movieSelector;
+            MovieSelection = movieSelector; // takes the correct format the movies is written in from the list and assigns it to property MovieSelection so that it prints correctly in customer info
             movies.Remove(movieSelector);
         }
         public DateTime ReturnDate(DateTime checkoutDate)       // method to figure out return date from checkout date
@@ -161,8 +148,8 @@ namespace MidtermProject
             
             int daysLate = DaysLate(returnDate);
             double lateFee = daysLate * 1.50;
-            builder.Append("You are " + daysLate + " days late!");
-            builder.AppendLine();       // Using builder so we can write to file
+            builder.Append("You are " + daysLate + " days late!");// Using builder so we can write to file
+            builder.AppendLine();       
             builder.Append("Please pay " + "$" + lateFee + " before you rent another movie!");
             builder.AppendLine();
         }
