@@ -15,10 +15,11 @@ namespace MidtermProject
 
             //this is part of Dorothy's branch off the master copy:
             // practice customers (hard-coded)
-            Customer customer1 = new Customer("Doro Hunt", "21652686561234", "CoraLiNe", new DateTime(2015, 09, 20));
-            Customer customer2 = new Customer("Shalamar Brown", "330542asdf", "avengers", new DateTime(2015, 10, 3));
-            Customer customer3 = new Customer("Orlando Cruz", "2164215714", "Kill bill", new DateTime(2015, 10, 5));
-            Customer customer4 = new Customer("Johnny Smith", "4406517985", "Halloweentown", new DateTime(2015, 09, 10));
+            Customer customer1 = new Customer("Doro Hunt", "21652686561234", "CoraLiNe", new DateTime(2015, 09, 25));
+            Customer customer2 = new Customer("Shalamar Brown", "3305429078", "avengers", new DateTime(2015, 10, 3));
+            Customer customer3 = new Customer("Orlando Cruz", "2164215714", "Kill bill", new DateTime(2015, 10, 8));
+            Customer customer4 = new Customer("Johnny Smith", "440651asdf", "Halloweentown", new DateTime(2015, 10, 10));
+            Customer customer5 = new Customer("Jenny Johnson", "4407597850", "Bridesmaids", new DateTime(2015, 10, 12));
             
             // user input for our 5th customer
             Console.WriteLine("Please enter your first and last name: ");
@@ -27,7 +28,7 @@ namespace MidtermProject
             string phoneNum = Console.ReadLine();
             Console.WriteLine("Which movie would you like to check out?");
             string movieOption = Console.ReadLine();
-            Customer customer5 = new Customer(custName, phoneNum, movieOption, DateTime.Now);
+            Customer customer6 = new Customer(custName, phoneNum, movieOption, DateTime.Now);
 
             // Created customerList so we can do following code to each individual customer
             List<Customer> customerList = new List<Customer>(); 
@@ -36,6 +37,7 @@ namespace MidtermProject
             customerList.Add(customer3);
             customerList.Add(customer4);
             customerList.Add(customer5);
+            customerList.Add(customer6);
             
             // builder created to hold multiple strings
             StringBuilder builder = new StringBuilder();
@@ -84,14 +86,15 @@ namespace MidtermProject
                         // if customer is not late do this else block
                         //builder.Append("Customer has no overdue information.");
                         //builder.AppendLine();
-                        Console.WriteLine("Customer has no overdue information" + "\n");
+                        Console.WriteLine(obj.custName + " has no overdue information" + "\n");
                     }
 
                 }
 
                 else
                 {   // if the movie is not in the movies list do this else block
-                    Console.WriteLine("We don't have that movie!" + "\n");     // If we don't have the movie
+                    Console.WriteLine("Sorry " + obj.custName);
+                    Console.WriteLine("We don't have " + movieSelection + "\n");     // If we don't have the movie
                     //obj.NoMovieRented(builder);      // Prints the NoMovieRented method that only prints custname and phone# + a message
                     //builder.AppendLine();
                     Console.WriteLine("\n");
